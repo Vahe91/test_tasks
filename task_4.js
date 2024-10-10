@@ -1,4 +1,8 @@
 function multiplicationTable(n) {
+  function numberLength(num) {
+    return num.toString().length;
+  }
+
   let output = "";
   if (isNaN(n)) {
     console.log(`${n} не является числом.`);
@@ -10,21 +14,16 @@ function multiplicationTable(n) {
   }
   for (let i = 0; i <= n; i++) {
     if (i === 0) {
-      output += " ".repeat(n.toString().length + 2);
+      output += " ".repeat(numberLength(n) + 2);
     } else {
-      output +=
-        " ".repeat((n * 10).toString().length - i.toString().length + 1) + i;
+      output += " ".repeat(numberLength(n * 10) - numberLength(i) + 1) + i;
     }
     for (let j = 1; j <= n; j++) {
       if (i === 0) {
-        output +=
-          " ".repeat((n * 10).toString().length - j.toString().length + 1) + j;
+        output += " ".repeat(numberLength(n * 10) - numberLength(j) + 1) + j;
       } else {
         output +=
-          " ".repeat(
-            (n * 10).toString().length - (i * j).toString().length + 1
-          ) +
-          i * j;
+          " ".repeat(numberLength(n * 10) - numberLength(i * j) + 1) + i * j;
       }
     }
     console.log(output);
